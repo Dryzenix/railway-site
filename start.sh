@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+echo "PORT is: $PORT"
+
 echo "Starting migrations..."
 python manage.py migrate
 echo "Migrations done"
@@ -14,4 +16,4 @@ python manage.py createsuperuser --noinput --username admin --email admin@exampl
 echo "Superuser done"
 
 echo "Starting gunicorn..."
-gunicorn bezbreda.wsgi:application --bind 0.0.0.0:$PORT
+gunicorn bezbreda.wsgi:application --bind 0.0.0.0:$PORT --timeout 30 --workers 1
