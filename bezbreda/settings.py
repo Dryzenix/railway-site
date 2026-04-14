@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-key-for-dev-only')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+DEBUG = True  # Temporarily enabled to see errors
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'railway-site-production.up.railway.app').split(',')
 
