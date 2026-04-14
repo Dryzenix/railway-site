@@ -1,0 +1,11 @@
+import os
+import sys
+
+# Путь к твоему проекту
+sys.path.insert(0, os.path.dirname(__file__))
+
+# Указываем настройки Django
+os.environ['DJANGO_SETTINGS_MODULE'] = 'bezbreda.settings'
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()

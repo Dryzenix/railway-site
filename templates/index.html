@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-[#050505] text-white">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>bez.breda | Future of Digital</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;900&display=swap');
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        #canvas-container { position: fixed; top: 0; left: 0; z-index: -1; outline: none; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .hero-gradient { background: radial-gradient(circle at 50% 50%, #1e40af 0%, transparent 50%); filter: blur(100px); opacity: 0.3; }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] hero-gradient pointer-events-none"></div>
+
+    <nav class="fixed w-full z-50 p-6 flex justify-between items-center glass">
+        <div class="text-2xl font-black tracking-tighter uppercase italic">bez.breda</div>
+        <div class="space-x-8 text-[10px] uppercase tracking-[0.4em] font-light hidden md:flex">
+            <a href="#work" class="hover:text-blue-500 transition">Works</a>
+            <a href="#about" class="hover:text-blue-500 transition">Core</a>
+            <a href="mailto:hi@bezbreda.io" class="hover:text-blue-500 transition">Contact</a>
+        </div>
+        <button class="bg-blue-600 text-white text-[10px] font-bold px-6 py-2 rounded-full uppercase tracking-widest hover:scale-110 transition-transform">Get in Touch</button>
+    </nav>
+
+    <header class="relative min-h-screen flex flex-col justify-center px-8 md:px-20 pt-20">
+        <div class="reveal">
+            <h1 class="text-[10vw] md:text-[8vw] font-black leading-[0.8] tracking-tighter uppercase">
+                Zero <br> <span class="text-transparent" style="-webkit-text-stroke: 1px white;">Noise.</span> <br> <span class="text-blue-600">Pure Code.</span>
+            </h1>
+            <p class="mt-10 text-xl md:text-2xl font-light text-gray-400 max-w-3xl leading-tight italic">
+                Мы проектируем цифровые экосистемы, которые работают на результат, а не создают видимость деятельности. 
+                Сложный бэкенд, быстрый фронтенд и архитектура, готовая к масштабированию.
+            </p>
+        </div>
+    </header>
+
+    <section id="services" class="px-8 md:px-20 py-20 bg-white/5 border-y border-white/5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="reveal">
+                <h4 class="text-blue-500 font-mono mb-4 text-sm tracking-widest uppercase">// 01 Engineering</h4>
+                <h3 class="text-3xl font-bold mb-4 uppercase">Web Systems</h3>
+                <p class="text-gray-400">Разработка высоконагруженных сервисов на Python и Django. Безопасность данных и отказоустойчивость как стандарт.</p>
+            </div>
+            <div class="reveal" style="transition-delay: 200ms;">
+                <h4 class="text-blue-500 font-mono mb-4 text-sm tracking-widest uppercase">// 02 Management</h4>
+                <h3 class="text-3xl font-bold mb-4 uppercase">Custom CRM</h3>
+                <p class="text-gray-400">Создаем индивидуальные панели управления, которые автоматизируют ваш маркетинг и продажи, а не усложняют их.</p>
+            </div>
+            <div class="reveal" style="transition-delay: 400ms;">
+                <h4 class="text-blue-500 font-mono mb-4 text-sm tracking-widest uppercase">// 03 Intelligence</h4>
+                <h3 class="text-3xl font-bold mb-4 uppercase">AI Integration</h3>
+                <p class="text-gray-400">Внедрение нейросетевых решений в существующие бизнес-процессы для оптимизации рутины и анализа данных.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="px-8 md:px-20 py-32">
+        <h2 class="text-[5vw] font-black uppercase mb-20 reveal">Selected Cases</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {% for project in projects %}
+            <div class="glass p-10 rounded-[40px] group cursor-pointer hover:bg-white/5 transition-all duration-700 reveal">
+                <div class="flex justify-between items-start mb-20">
+                    <span class="text-xs font-mono text-blue-500 uppercase tracking-widest">{{ project.tech_stack }}</span>
+                    <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-blue-600 group-hover:border-blue-600 transition-all">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                    </div>
+                </div>
+                <h3 class="text-5xl font-black uppercase mb-4">{{ project.title }}</h3>
+                <p class="text-gray-500 text-lg leading-relaxed">{{ project.description }}</p>
+            </div>
+            {% empty %}
+            <p class="text-gray-600 text-2xl uppercase font-bold reveal">The portfolio is being forged...</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <footer class="p-20 text-center border-t border-white/5">
+        <h2 class="text-[8vw] font-black uppercase tracking-tighter mb-10 reveal">Let's talk.</h2>
+        <a href="mailto:hi@bezbreda.io" class="text-2xl md:text-4xl font-light text-blue-500 hover:text-white transition-colors underline underline-offset-8">hi@bezbreda.io</a>
+        <div class="mt-32 text-gray-600 text-[10px] tracking-[0.5em] uppercase">© 2026 bez.breda — all rights reserved</div>
+    </footer>
+
+    <script>
+        // 3D Scene Setup
+        const container = document.querySelector('#canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+
+        // Abstract Geometry (The 3D Object)
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshNormalMaterial({ wireframe: true });
+        const knot = new THREE.Mesh(geometry, material);
+        scene.add(knot);
+        camera.position.z = 30;
+
+        // Interaction
+        let mouseX = 0; let mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - window.innerWidth / 2) * 0.05;
+            mouseY = (e.clientY - window.innerHeight / 2) * 0.05;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            knot.rotation.x += 0.01;
+            knot.rotation.y += 0.01;
+            knot.position.x += (mouseX - knot.position.x) * 0.05;
+            knot.position.y += (-mouseY - knot.position.y) * 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Responsive
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Scroll Animations
+        ScrollReveal().reveal('.reveal', { 
+            delay: 200, 
+            distance: '50px', 
+            origin: 'bottom', 
+            duration: 1000,
+            interval: 100 
+        });
+    </script>
+</body>
+</html>
